@@ -130,7 +130,7 @@ def read_network_data(net,NDP):
 #---read trip data
 #---OD_demand is a dictionary where the keys are OD pairs and the values are the demands
 
-def readTripData(net):
+def read_trip_data(net):
     trip_data = open(net+'_trips.txt','r')
     trip_lines = trip_data.readlines()
     trip_data.close()
@@ -777,7 +777,7 @@ def TAP_lin_BB(data,SP):
     TAP.parameters.threads = 1
     TAP.parameters.simplex.display = 0
     TAP.parameters.timelimit = timelimit
-    sol = primal.solve()
+    sol = TAP.solve()
   
     xcopt = {(i,j,s):TAP.solution.get_value(xc[i,j,s]) for (i,j) in A for s in D}
     llopt = {(i,j,v):TAP.solution.get_value(ll[i,j,v]) for (i,j) in A for v in V}
@@ -799,7 +799,7 @@ def TAP_lin_BB(data,SP):
 #---budget sensitivity experiment
 
 output = open("Benchmark_budget.txt",'w')
-net = 'Siouxfalls'
+net = 'SiouxFalls'
 gtime0 = time.time()
 
 #---iterate over 10- and 20-link instance sets
@@ -849,7 +849,7 @@ output.close()
 #---demand sensitivity experiment
 
 output = open("Benchmark_demand.txt",'w')
-net = 'Siouxfalls'
+net = 'SiouxFalls'
 gtime0 = time.time()
 
 #---iterate over 10- and 20-link instance sets
