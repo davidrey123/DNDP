@@ -429,7 +429,7 @@ def algo_SOIC(data):
             break
         
         #---if not converged, add interdiction cut
-        SOIC.add_constraint(sum((1-yopt[i,j])*y[i,j] + yopt[i,j]*(1 - y[i,j]) for (i,j) in A2) >= 2)
+        SOIC.add_constraint(sum((1-yopt[i,j])*y[i,j] + yopt[i,j]*(1 - y[i,j]) for (i,j) in A2) >= 1)
         
         nit += 1
         
